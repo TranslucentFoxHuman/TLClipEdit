@@ -3,7 +3,7 @@ Maximized=1
 Geometry=1920x1027+0+0
 
 [File Loader]
-Files=../../src/main.c#30%%%../../src/tlclipedit.h#22%%%../../src/tlclipedit.c#58%%%../../src/tlclipedit.ui
+Files=../../src/main.c#30%%%../../src/tlclipedit.h#22%%%../../src/tlclipedit.c#24%%%../../src/tlclipedit.ui
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n

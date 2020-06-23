@@ -33,11 +33,18 @@ char *versioninfo = "0.1";
 char *copyrightstring =" tlclipedit.c\n Copyright (C) 2020 TranslucentFoxHuman\n \n TLClipEdit is free software: you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the\n Free Software Foundation, either version 3 of the License, or\n (at your option) any later version.\n \n TLClipEdit is distributed in the hope that it will be useful, but\n WITHOUT ANY WARRANTY; without even the implied warranty of\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n See the GNU General Public License for more details.\n \n You should have received a copy of the GNU General Public License along\n with this program.  If not, see <http://www.gnu.org/licenses/>.";
 
 G_MODULE_EXPORT void copybuttonclicked(GtkButton *button, gpointer user_data){
-	gtk_entry_set_text(GTK_ENTRY(inputbox1),"Hello World!");
+	gtk_clipboard_set_text (gtk_clipboard_get (NULL),gtk_entry_get_text (GTK_ENTRY(inputbox1)),-1);
+}
+
+G_MODULE_EXPORT void pastbuttonclicked(GtkButton *button, gpointer user_data){
+	//gtk_entry_set_text(GTK_ENTRY(inputbox1),gtk_clipboard_wait_for_text(gtk_clipboard_get (NULL)));
+	char texts;
+	strcpy(texts,"文字列");
+	gtk_entry_set_text(GTK_ENTRY(inputbox1),texts);
 }
 
 G_MODULE_EXPORT void aboutclicked(GtkButton *button, gpointer user_data){
-	char** auth;
+	char* auth[] = {"TranslucentFoxHuman (半透明狐人間)",NULL};
 	GdkPixbuf *windowicon = gtk_window_get_icon (GTK_WINDOW(window));
 	/*auth[0] = "TranslucentFoxHuman (半透明狐人間)";
 	auth[1] = NULL;*/
@@ -55,7 +62,7 @@ G_MODULE_EXPORT void aboutclicked(GtkButton *button, gpointer user_data){
 	                       "license-type", GTK_LICENSE_GPL_3_0,
 	                       "version" , versioninfo,
 	                       "logo", windowicon,
-	                       //"authors", auth,
+	                       "authors", auth,
                        NULL);
 }
 
