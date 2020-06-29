@@ -17,6 +17,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "tlclipedit.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #include <glib/gi18n.h>
 
@@ -27,6 +29,7 @@
 
 GtkWidget *inputbox1;
 GtkWidget *window;
+GtkWidget *textview1;
 GtkBuilder *builder;
 
 char *versioninfo = "0.1";
@@ -63,7 +66,34 @@ G_MODULE_EXPORT void aboutclicked(GtkButton *button, gpointer user_data){
                        NULL);
 }
 
+G_MODULE_EXPORT void clearinputbox(GtkButton *button, gpointer user_data){
+	gtk_entry_set_text(GTK_ENTRY(inputbox1),"");
+}
 
+G_MODULE_EXPORT void copytorireki(GtkButton *button, gpointer user_data){
+	char texts[102400] = "";
+	char printtext[102400] = "";
+	int textssize;
+	char *entrytext = gtk_entry_get_text(GTK_ENTRY(inputbox1));
+	GtkTextBuffer *txtbuf = gtk_text_view_get_buffer (textview1);
+	GtkTextIter startiter,enditer;
+	gtk_text_buffer_get_start_iter(txtbuf,&startiter);
+	gtk_text_buffer_get_end_iter (txtbuf,&enditer);
+
+
+	strcpy(texts,gtk_text_buffer_get_text (txtbuf,&startiter,&enditer,TRUE));
+	textssize = (int)strlen(texts);
+	textssize = textssize + (int)strlen(entrytext);
+
+	/*if (textssize >= 10240) {
+		//q_errdiag(mainwindow,"履歴がいっぱいです");
+		return;
+	}*/
+
+	snprintf(printtext,102400,"%s%s\n",texts,entrytext);
+
+	gtk_text_buffer_set_text (txtbuf,printtext,-1);
+}
 
 G_DEFINE_TYPE (Tlclipedit, tlclipedit, GTK_TYPE_APPLICATION);
 
@@ -94,6 +124,7 @@ tlclipedit_new_window (GApplication *app,
 	}
 	// オブジェクトの取得
 	inputbox1 = gtk_builder_get_object(builder,"inputbox1");
+	textview1 = gtk_builder_get_object (builder,"textview1");
 
 	/* Auto-connect signal handlers */
 	gtk_builder_connect_signals (builder, app);
