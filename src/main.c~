@@ -27,9 +27,7 @@
 
 
 
-G_MODULE_EXPORT void copybuttonclicked(GtkButton *button, gpointer user_data){
-	//gtk_entry_set_text(GTK_ENTRY(inputbox1),"Hello World!");
-}
+
 
 int
 main (int argc, char *argv[])

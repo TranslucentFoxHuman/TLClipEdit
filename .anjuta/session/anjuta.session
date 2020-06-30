@@ -2,20 +2,20 @@
 Maximized=1
 Geometry=1920x1034+-6+-6
 
-[Execution]
-Program uri=../../src/tlclipedit
-Run in terminal=1
-Working directories=../../.
-
 [File Loader]
-Files=../../src/main.c#30%%%../../src/tlclipedit.h#22%%%../../src/tlclipedit.c#6%%%../../AUTHORS#1%%%../../COPYING#1%%%../../ChangeLog#2%%%../../NEWS#1%%%../../README#25%%%../../src/tlclipedit.ui
+Files=../../src/main.c#30%%%../../src/tlclipedit.h#22%%%../../src/tlclipedit.c#35%%%../../AUTHORS#1%%%../../COPYING#1%%%../../ChangeLog#2%%%../../NEWS#1%%%../../README#25%%%../../src/tlclipedit.ui
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
 
+[Execution]
+Program uri=../../src/tlclipedit
+Run in terminal=2
+Working directories=../../.
+
 [Project Manager]
-Shortcut=tlclipedit
-Expand=tlclipedit%%%tlclipedit%%%tlclipedit//dist_doc
+Shortcut=tlclipedit//src//tlclipedit
+Expand=tlclipedit
 
 [Debugger]
 Stop at beginning=2

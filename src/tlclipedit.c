@@ -24,7 +24,7 @@
 
 /* For testing propose use the local (not installed) ui file */
 /* #define UI_FILE PACKAGE_DATA_DIR"/ui/tlclipedit.ui" */
-#define UI_FILE "src/tlclipedit.ui"
+#define UI_FILE "/usr/local/share/tlclipedit/ui/tlclipedit.ui"
 #define TOP_WINDOW "window"
 
 GtkWidget *inputbox1;
@@ -32,7 +32,7 @@ GtkWidget *window;
 GtkWidget *textview1;
 GtkBuilder *builder;
 
-char *versioninfo = "0.1";
+char *versioninfo = "0.2";
 char *copyrightstring =" tlclipedit.c\n Copyright (C) 2020 TranslucentFoxHuman\n \n TLClipEdit is free software: you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the\n Free Software Foundation, either version 3 of the License, or\n (at your option) any later version.\n \n TLClipEdit is distributed in the hope that it will be useful, but\n WITHOUT ANY WARRANTY; without even the implied warranty of\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n See the GNU General Public License for more details.\n \n You should have received a copy of the GNU General Public License along\n with this program.  If not, see <http://www.gnu.org/licenses/>.";
 
 G_MODULE_EXPORT void copybuttonclicked(GtkButton *button, gpointer user_data){

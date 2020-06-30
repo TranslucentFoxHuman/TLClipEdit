@@ -20,7 +20,7 @@
 #include <config.h>
 #include <gtk/gtk.h>
 #include "tlclipedit.h"
-#define UI_FILE "src/tlclipedit.ui"
+#define UI_FILE "/usr/local/share/tlclipedit/ui/tlclipedit.ui"
 
 
 #include <glib/gi18n.h>
