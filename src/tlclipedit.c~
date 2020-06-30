@@ -71,8 +71,8 @@ G_MODULE_EXPORT void clearinputbox(GtkButton *button, gpointer user_data){
 }
 
 G_MODULE_EXPORT void copytorireki(GtkButton *button, gpointer user_data){
-	char texts[10240] = "";
-	char printtext[10240] = "";
+	char texts[102400] = "";
+	char printtext[102400] = "";
 	int textssize;
 	char *entrytext = gtk_entry_get_text(GTK_ENTRY(inputbox1));
 	GtkTextBuffer *txtbuf = gtk_text_view_get_buffer (textview1);
@@ -90,7 +90,7 @@ G_MODULE_EXPORT void copytorireki(GtkButton *button, gpointer user_data){
 		return;
 	}*/
 
-	snprintf(printtext,10240,"%s%s\n",texts,entrytext);
+	snprintf(printtext,102400,"%s%s\n",texts,entrytext);
 
 	gtk_text_buffer_set_text (txtbuf,printtext,-1);
 }
