@@ -94,7 +94,8 @@ am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
-	$(am__configure_deps) $(dist_doc_DATA) $(am__DIST_COMMON)
+	$(am__configure_deps) $(dist_desktopentry_DATA) \
+	$(dist_doc_DATA) $(am__DIST_COMMON)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
@@ -155,8 +156,8 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(docdir)"
-DATA = $(dist_doc_DATA)
+am__installdirs = "$(DESTDIR)$(desktopentrydir)" "$(DESTDIR)$(docdir)"
+DATA = $(dist_desktopentry_DATA) $(dist_doc_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 am__recursive_targets = \
@@ -400,6 +401,8 @@ INTLTOOL_FILES = intltool-extract.in \
 EXTRA_DIST = \
 	$(INTLTOOL_FILES)
 
+desktopentrydir = /usr/share/applications
+dist_desktopentry_DATA = src/tlclipedit.desktop
 DISTCLEANFILES = intltool-extract \
 	intltool-merge \
 	intltool-update \
@@ -466,6 +469,27 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool config.lt
+install-dist_desktopentryDATA: $(dist_desktopentry_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(dist_desktopentry_DATA)'; test -n "$(desktopentrydir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(desktopentrydir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(desktopentrydir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(desktopentrydir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(desktopentrydir)" || exit $$?; \
+	done
+
+uninstall-dist_desktopentryDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dist_desktopentry_DATA)'; test -n "$(desktopentrydir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(desktopentrydir)'; $(am__uninstall_files_from_dir)
 install-dist_docDATA: $(dist_doc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(dist_doc_DATA)'; test -n "$(docdir)" || list=; \
@@ -787,7 +811,7 @@ check: check-recursive
 all-am: Makefile $(DATA) config.h
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(docdir)"; do \
+	for dir in "$(DESTDIR)$(desktopentrydir)" "$(DESTDIR)$(docdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -843,7 +867,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-dist_docDATA
+install-data-am: install-dist_desktopentryDATA install-dist_docDATA
 
 install-dvi: install-dvi-recursive
 
@@ -889,7 +913,8 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-dist_docDATA uninstall-local
+uninstall-am: uninstall-dist_desktopentryDATA uninstall-dist_docDATA \
+	uninstall-local
 
 .MAKE: $(am__recursive_targets) all install-am install-strip
 
@@ -901,14 +926,16 @@ uninstall-am: uninstall-dist_docDATA uninstall-local
 	distclean-hdr distclean-libtool distclean-tags distcleancheck \
 	distdir distuninstallcheck dvi dvi-am html html-am info \
 	info-am install install-am install-data install-data-am \
-	install-dist_docDATA install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-dist_docDATA uninstall-local
+	install-dist_desktopentryDATA install-dist_docDATA install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+	ps ps-am tags tags-am uninstall uninstall-am \
+	uninstall-dist_desktopentryDATA uninstall-dist_docDATA \
+	uninstall-local
 
 .PRECIOUS: Makefile
 

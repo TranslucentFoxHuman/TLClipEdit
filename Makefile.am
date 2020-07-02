@@ -19,6 +19,10 @@ INTLTOOL_FILES = intltool-extract.in \
 EXTRA_DIST = \
 	$(INTLTOOL_FILES)
 
+desktopentrydir =  /usr/share/applications
+dist_desktopentry_DATA = src/tlclipedit.desktop
+
+
 DISTCLEANFILES = intltool-extract \
 	intltool-merge \
 	intltool-update \

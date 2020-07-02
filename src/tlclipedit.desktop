@@ -1,0 +1,8 @@
+[Desktop Entry]
+Categories=Utility;
+Exec=/usr/local/bin/tlclipedit
+Icon=/usr/local/share/tlclipedit/ui/TLClipEditIcon.png
+Type=Application
+Terminal=false
+Name=TLClipEdit
+
