@@ -24,6 +24,8 @@ Lubuntu 18.04 (Ubuntu)
  
 Trisquel 8.0
  
+CentOS Linux 8
+ 
  
 # インストール手順 
 まず、このアーカイブをすべて解凍し、解凍先のフォルダで端末を開きます。 
@@ -38,6 +40,8 @@ sudo make install
  
 configureの段階で失敗する場合、パッケージが不足している可能性が考えられます。 
 このソフトウェアには、以下のパッケージが必要です。(Ubuntuの場合) 
+ 
+ 
 gcc 
  
 make 
@@ -45,6 +49,9 @@ make
 intltool 
  
 libgtk-3-dev 
+ 
+ 
+CentOSの場合、libgtk-3-devの代わりに、「gtk3-devel」が必要です。
  
 これらを先にインストールしてから、再度configureを試みてください。 
 詳しくは、INSTALLファイルをご覧ください。 

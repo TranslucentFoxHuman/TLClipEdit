@@ -34,13 +34,13 @@
             <notebook orientation="vertical" resize="yes" locked="no" iconified="no" closed="yes" page="-1"/>
           </paned>
         </paned>
-        <notebook orientation="vertical" resize="yes" locked="no" iconified="no" closed="no" page="5">
+        <notebook orientation="vertical" resize="yes" locked="no" iconified="no" closed="no" page="4">
           <item name="AnjutaDebuggerStack" orientation="horizontal" resize="yes" locked="no" iconified="no" closed="yes"/>
           <item name="AnjutaDebuggerLocals" orientation="horizontal" resize="yes" locked="no" iconified="no" closed="yes"/>
           <item name="AnjutaDebuggerWatch" orientation="vertical" resize="yes" locked="no" iconified="no" closed="yes"/>
           <item name="AnjutaDebuggerBreakpoints" orientation="vertical" resize="yes" locked="no" iconified="no" closed="yes"/>
           <item name="AnjutaTerminal" orientation="vertical" resize="yes" locked="no" iconified="no" closed="no"/>
-          <item name="AnjutaMessageView" orientation="vertical" resize="yes" locked="no" iconified="no" closed="no"/>
+          <item name="AnjutaMessageView" orientation="vertical" resize="yes" locked="no" iconified="no" closed="yes"/>
         </notebook>
       </paned>
     </dock>
